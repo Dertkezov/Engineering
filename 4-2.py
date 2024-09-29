@@ -5,17 +5,17 @@ GPIO.setup(dac, GPIO.OUT)
 import time
 def tobin(N):
     return[int(i) for i in bin(N)[2:].zfill(8)]
-
+T = int(input()) / 512
 try:
     while True:
         for i in range (0, 256):
             for j in range (len(dac)):
                 GPIO.output(dac[j], int(tobin(i)[j])) 
-                time.sleep(0.1)        
+                time.sleep(T)        
         for i in range (254, 0, -1):
             for j in range (len(dac)):
                 GPIO.output(dac[j], int(tobin(i)[j]))
-                time.sleep(0.1) 
+                time.sleep(T) 
         
         
 finally:
